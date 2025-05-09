@@ -1,0 +1,14 @@
+<!-- templates/customer/checkout.html -->
+<!DOCTYPE html>
+<html>
+<head><title>Checkout</title></head>
+<body>
+    <h2>Checkout</h2>
+    <form method="post">
+        Shipping Address: <input name="ShippingAddress" required><br>
+        Payment Card: <input name="CardNumber" required><br>
+        <button type="submit">Confirm Order</button>
+    </form>
+    <a href="{{ url_for('customer_bp.basket') }}">⬅ Back to Basket</a>
+</body>
+</html>

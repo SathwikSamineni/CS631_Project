@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Average Product Price</title>
+</head>
+<body>
+    <h2>Average Selling Price per Product Type</h2>
+    <p>From: {{ start }} To: {{ end }}</p>
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Product Type</th>
+                <th>Average Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in results %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>${{ '%.2f'|format(row[1]) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="/statistics">⬅ Back to Statistics</a>
+</body>
+</html>

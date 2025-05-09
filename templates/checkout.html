@@ -1,0 +1,46 @@
+<!-- checkout.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <style>
+        body { background: #f8f8f8; font-family: sans-serif; padding: 30px; }
+        .container { background: white; max-width: 700px; margin: auto; padding: 25px; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        h1 { text-align: center; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        select, button { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; }
+        button { background-color: #27ae60; color: white; font-weight: bold; cursor: pointer; }
+        button:hover { background-color: #219150; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Checkout</h1>
+        <form method="post">
+            <label for="CustomerID">Customer</label>
+            <select name="CustomerID" required>
+                {% for c in customers %}
+                <option value="{{ c[0] }}">{{ c[1] }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="ShippingID">Shipping Address</label>
+            <select name="ShippingID" required>
+                {% for s in addresses %}
+                <option value="{{ s[0] }}">{{ s[1] }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="CardNumber">Card Number</label>
+            <select name="CardNumber" required>
+                {% for card in cards %}
+                <option value="{{ card[0] }}">{{ card[0] }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Confirm Checkout</button>
+        </form>
+    </div>
+</body>
+</html>

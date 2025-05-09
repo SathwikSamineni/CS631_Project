@@ -1,0 +1,17 @@
+<!-- templates/admin/products.html -->
+<!DOCTYPE html>
+<html>
+<head><title>Manage Products</title></head>
+<body>
+    <h2>Product Management</h2>
+    <form method="post" action="/admin/products">
+        Product Name: <input name="Name"><br>
+        Description: <input name="Description"><br>
+        Price: <input type="number" name="RecommendedPrice"><br>
+        Type: <input name="ProductType"><br>
+        Stock: <input type="number" name="QuantityInStock"><br>
+        <button type="submit">Add Product</button>
+    </form>
+    <a href="{{ url_for('admin_bp.dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

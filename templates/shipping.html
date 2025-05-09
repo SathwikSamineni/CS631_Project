@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Shipping Address Management</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+            font-family: 'Segoe UI', sans-serif;
+            padding: 30px;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 20px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1e88e5;
+        }
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            display: block;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Shipping Address</h1>
+        <form method="post" action="/add-shipping">
+            <label for="CustomerID">Customer</label>
+            <select name="CustomerID" required>
+                {% for c in customers %}
+                    <option value="{{ c[0] }}">{{ c[1] }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="AddressName">Address Name (nickname)</label>
+            <input type="text" name="AddressName" required>
+
+            <label for="Street">Street</label>
+            <input type="text" name="Street" required>
+
+            <label for="City">City</label>
+            <input type="text" name="City" required>
+
+            <label for="State">State</label>
+            <input type="text" name="State" required>
+
+            <label for="ZipCode">Zip Code</label>
+            <input type="text" name="ZipCode" required>
+
+            <label for="Country">Country</label>
+            <input type="text" name="Country" required>
+
+            <button type="submit">Save Address</button>
+        </form>
+
+        <h2>Saved Shipping Addresses</h2>
+        <table>
+            <tr>
+                <th>ID</th><th>Customer ID</th><th>Name</th><th>Street</th><th>City</th><th>State</th><th>Zip</th><th>Country</th>
+            </tr>
+            {% for a in addresses %}
+            <tr>
+                <td>{{ a[0] }}</td><td>{{ a[1] }}</td><td>{{ a[2] }}</td><td>{{ a[3] }}</td><td>{{ a[4] }}</td>
+                <td>{{ a[5] }}</td><td>{{ a[6] }}</td><td>{{ a[7] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="/">⬅ Back to Customer Page</a>
+    </div>
+</body>
+</html>

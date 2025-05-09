@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Offers Management</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+            padding: 30px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e67e22;
+        }
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Product Offer</h1>
+        <form method="post" action="/add-offer">
+            <label for="ProductID">Select Product</label>
+            <select name="ProductID" required>
+                {% for p in products %}
+                    <option value="{{ p[0] }}">{{ p[1] }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="OfferPrice">Offer Price</label>
+            <input type="number" name="OfferPrice" step="0.01" required>
+
+            <button type="submit">Add Offer</button>
+        </form>
+
+        <h2>Current Offers</h2>
+        <table>
+            <tr>
+                <th>Offer ID</th>
+                <th>Product Name</th>
+                <th>Offer Price</th>
+            </tr>
+            {% for offer in offers %}
+            <tr>
+                <td>{{ offer[0] }}</td>
+                <td>{{ offer[1] }}</td>
+                <td>${{ offer[2] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="/products">⬅ Back to Product Management</a>
+    </div>
+</body>
+</html>

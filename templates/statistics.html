@@ -1,0 +1,75 @@
+
+<!-- statistics.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sales Statistics</title>
+    <style>
+        body { background: #eef2f3; font-family: sans-serif; padding: 30px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        h1, h2 { text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background-color: #333; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        form { margin: 30px 0; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; }
+        input[type="date"] { padding: 6px; margin-right: 10px; }
+        button { padding: 6px 12px; background-color: #333; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sales Statistics</h1>
+
+        <h2>Total Amount by Card</h2>
+        <table>
+            <tr><th>Card Number</th><th>Total Amount</th></tr>
+            {% for row in stats.card_totals %}
+            <tr><td>{{ row[0] }}</td><td>${{ row[1] }}</td></tr>
+            {% endfor %}
+        </table>
+
+        <h2>Top 10 Customers</h2>
+        <table>
+            <tr><th>Customer</th><th>Total Spent</th></tr>
+            {% for row in stats.top_customers %}
+            <tr><td>{{ row[0] }}</td><td>${{ row[1] }}</td></tr>
+            {% endfor %}
+        </table>
+
+        <h2>Most Frequently Sold Products</h2>
+        <table>
+            <tr><th>Product</th><th>Quantity Sold</th></tr>
+            {% for row in stats.popular_products %}
+            <tr><td>{{ row[0] }}</td><td>{{ row[1] }}</td></tr>
+            {% endfor %}
+        </table>
+
+        <h2>Products with Most Distinct Buyers</h2>
+        <table>
+            <tr><th>Product</th><th>Number of Customers</th></tr>
+            {% for row in stats.distinct_buyers %}
+            <tr><td>{{ row[0] }}</td><td>{{ row[1] }}</td></tr>
+            {% endfor %}
+        </table>
+
+        <h2>Max Basket Total per Credit Card (by Date Range)</h2>
+        <form method="post" action="/max-basket-total">
+            <label>Select Date Range:</label>
+            <input type="date" name="start_date" required>
+            <input type="date" name="end_date" required>
+            <button type="submit">Compute</button>
+        </form>
+
+        <h2>Average Product Price per Type (by Date Range)</h2>
+        <form method="post" action="/avg-product-price">
+            <label>Select Date Range:</label>
+            <input type="date" name="start_date" required>
+            <input type="date" name="end_date" required>
+            <button type="submit">Compute</button>
+        </form>
+    </div>
+</body>
+</html>

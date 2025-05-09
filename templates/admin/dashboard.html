@@ -1,0 +1,13 @@
+<!-- templates/admin/dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head><title>Admin Dashboard</title></head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <ul>
+        <li><a href="{{ url_for('admin_bp.manage_products') }}">Manage Products</a></li>
+        <li><a href="{{ url_for('admin_bp.manage_offers') }}">Manage Offers</a></li>
+        <li><a href="{{ url_for('admin_bp.stats') }}">View Statistics</a></li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!-- templates/customer/shop.html -->
+<!DOCTYPE html>
+<html>
+<head><title>Shop</title></head>
+<body>
+    <h2>Available Products</h2>
+    <ul>
+        {% for p in products %}
+        <li>
+            {{ p[1] }} - ${{ p[3] }}<br>
+            {{ p[2] }}
+            <form method="post" action="{{ url_for('customer_bp.basket') }}">
+                <input type="hidden" name="ProductID" value="{{ p[0] }}">
+                Quantity: <input type="number" name="Quantity" value="1">
+                <button type="submit">Add to Basket</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('customer_bp.basket') }}">View Basket</a>
+</body>
+</html>

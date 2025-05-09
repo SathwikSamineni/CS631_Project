@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Registration</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            padding: 40px;
+            color: #333;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        form label {
+            font-weight: 600;
+            display: block;
+            margin: 12px 0 6px;
+        }
+        form input, form select, form button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        form button:hover {
+            background-color: #45a049;
+        }
+        table {
+            margin-top: 30px;
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #2196F3;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f4f8fc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Registration</h1>
+        <form method="post" action="/register">
+            <label for="FirstName">First Name</label>
+            <input type="text" id="FirstName" name="FirstName" required>
+
+            <label for="LastName">Last Name</label>
+            <input type="text" id="LastName" name="LastName" required>
+
+            <label for="Email">Email</label>
+            <input type="email" id="Email" name="Email" required>
+
+            <label for="Phone">Phone</label>
+            <input type="text" id="Phone" name="Phone">
+
+            <label for="Status">Status</label>
+            <select name="Status" id="Status">
+                <option value="Regular">Regular</option>
+                <option value="Silver">Silver</option>
+                <option value="Gold">Gold</option>
+                <option value="Platinum">Platinum</option>
+            </select>
+
+            <button type="submit">Register Customer</button>
+        </form>
+
+        <h2>Registered Customers</h2>
+        <table>
+            <tr>
+                <th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone</th><th>Status</th>
+            </tr>
+            {% for c in customers %}
+            <tr>
+                <td>{{ c[0] }}</td>
+                <td>{{ c[1] }}</td>
+                <td>{{ c[2] }}</td>
+                <td>{{ c[3] }}</td>
+                <td>{{ c[4] }}</td>
+                <td>{{ c[5] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

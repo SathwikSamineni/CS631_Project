@@ -1,0 +1,14 @@
+<!-- templates/admin/offers.html -->
+<!DOCTYPE html>
+<html>
+<head><title>Manage Offers</title></head>
+<body>
+    <h2>Offer Management</h2>
+    <form method="post" action="/admin/offers">
+        Product ID: <input name="ProductID"><br>
+        Offer Price: <input name="OfferPrice"><br>
+        <button type="submit">Add Offer</button>
+    </form>
+    <a href="{{ url_for('admin_bp.dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

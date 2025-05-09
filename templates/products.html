@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #bdc3c7, #2c3e50);
+            font-family: 'Segoe UI', sans-serif;
+            padding: 30px;
+            color: white;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            color: #333;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 12px;
+            display: block;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #aaa;
+        }
+        button {
+            margin-top: 20px;
+            background-color: #27ae60;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #219150;
+        }
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        a {
+            display: block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Product</h1>
+        <form method="post" action="/add-product">
+            <label for="Name">Product Name</label>
+            <input type="text" name="Name" required>
+
+            <label for="Description">Description</label>
+            <textarea name="Description" rows="3"></textarea>
+
+            <label for="RecommendedPrice">Recommended Price</label>
+            <input type="number" name="RecommendedPrice" step="0.01" required>
+
+            <label for="ProductType">Product Type</label>
+            <select name="ProductType" required>
+                <option>Desktop</option>
+                <option>Laptop</option>
+                <option>Printer</option>
+                <option>Accessory</option>
+                <option>Other</option>
+            </select>
+
+            <label for="QuantityInStock">Quantity In Stock</label>
+            <input type="number" name="QuantityInStock" required>
+
+            <button type="submit">Add Product</button>
+        </form>
+
+        <h2>Product List</h2>
+        <table>
+            <tr>
+                <th>ID</th><th>Name</th><th>Description</th><th>Price</th><th>Type</th><th>Stock</th>
+            </tr>
+            {% for p in products %}
+            <tr>
+                <td>{{ p[0] }}</td>
+                <td>{{ p[1] }}</td>
+                <td>{{ p[2] }}</td>
+                <td>${{ p[3] }}</td>
+                <td>{{ p[4] }}</td>
+                <td>{{ p[5] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="/">⬅ Back to Customer Page</a>
+    </div>
+</body>
+</html>
